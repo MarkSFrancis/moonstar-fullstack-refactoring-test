@@ -1,6 +1,5 @@
 ﻿using System;
-
-using static LegacyApp.Validation.UserValidation;
+using LegacyApp.Validation;
 
 namespace LegacyApp
 {
@@ -8,7 +7,7 @@ namespace LegacyApp
     {
         public bool AddUser(string firstName, string surname, string email, DateTime dateOfBirth, int clientId)
         {
-            if (!TryParseUser(firstName, surname, email, dateOfBirth, out var user))
+            if (!UserValidation.TryParseUser(firstName, surname, email, dateOfBirth, out var user))
             {
                 return false;
             }
