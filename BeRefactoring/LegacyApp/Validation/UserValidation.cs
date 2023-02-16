@@ -2,7 +2,7 @@
 
 namespace LegacyApp.Validation
 {
-    internal static class UserValidation
+    public static class UserValidation
     {
         public const int USER_MINIMUM_AGE = 21;
 
@@ -62,14 +62,18 @@ namespace LegacyApp.Validation
         {
             var now = DateTime.Now;
             int age = now.Year - dateOfBirth.Year;
-            if (now.Month < dateOfBirth.Month || (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)) age--;
 
-            if (age < minimumAge)
+            // Check if their birthday is yet to pass this year
+            if (now.Month < dateOfBirth.Month)
             {
-                return false;
+                age--;
+            }
+            else if (now.Month == dateOfBirth.Month && now.Day < dateOfBirth.Day)
+            {
+                age--;
             }
 
-            return true;
+            return age >= minimumAge;
         }
     }
 }

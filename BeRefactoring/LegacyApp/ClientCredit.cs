@@ -1,6 +1,6 @@
 ﻿namespace LegacyApp
 {
-    internal static class ClientCredit
+    public static class ClientCredit
     {
         public static bool SkipCreditCheck(Client client)
         {
