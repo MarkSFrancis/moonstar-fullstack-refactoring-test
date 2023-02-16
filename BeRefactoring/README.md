@@ -17,3 +17,5 @@ You can change anything in the LegacyApp project except for the UserDataAccess c
 I would've liked to implement some more tests for the project, but I couldn't think of a sensible way to introduce the dependency injection required to create good mocks of services like `UserCreditService` in time. 
 
 I could introduce a new DI layer, similar to `Microsoft.Extewnsions.DependencyInjection`, using `IHost` (see an example [here](https://learn.microsoft.com/en-us/dotnet/core/extensions/dependency-injection-usage)), but I didn't think it was a good idea to do that in a library.
+
+I also would've liked to update the .NET version, but didn't want to risk changes to `LegacyApp.Consumer`
