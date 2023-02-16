@@ -13,11 +13,9 @@ namespace LegacyApp
             }
 
             var clientRepository = new ClientRepository();
-            var client = clientRepository.GetById(clientId);
+            user.Client = clientRepository.GetById(clientId);
 
-            user.Client = client;
-
-            if (!CreditCheckService.ExecuteCreditCheck(user, client))
+            if (!CreditCheckService.ExecuteCreditCheck(user))
             {
                 return false;
             }

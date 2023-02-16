@@ -4,17 +4,17 @@
     {
         public const int MINIMUM_CREDIT_LIMIT = 500;
 
-        public static bool ExecuteCreditCheck(User user, Client client)
+        public static bool ExecuteCreditCheck(User user)
         {
-            var (hasCreditLimit, creditLimit) = GetCreditLimit(user, client);
+            var (hasCreditLimit, creditLimit) = GetCreditLimit(user);
             ApplyChangesToUser(user, hasCreditLimit, creditLimit);
 
             return PassesCreditCheck(user);
         }
 
-        private static (bool hasCreditLimit, int creditLimit) GetCreditLimit(User user, Client client)
+        private static (bool hasCreditLimit, int creditLimit) GetCreditLimit(User user)
         {
-            if (ClientCredit.SkipCreditCheck(client))
+            if (ClientCredit.SkipCreditCheck(user.Client))
             {
                 return (false, 0);
             }
@@ -22,7 +22,7 @@
             using var userCreditService = new UserCreditServiceClient();
             var creditLimit = userCreditService.GetCreditLimit(user.Firstname, user.Surname, user.DateOfBirth);
 
-            if (ClientCredit.DoubleCreditLimitOnCheck(client))
+            if (ClientCredit.DoubleCreditLimitOnCheck(user.Client))
             {
                 return (true, creditLimit * 2);
             }
