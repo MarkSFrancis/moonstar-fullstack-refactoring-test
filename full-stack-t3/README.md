@@ -1,3 +1,63 @@
+# Moonstar coding test for fullstack developer
+
+## Introduction
+
+One of the junior team members has been asked by the product owner to build a simple POC of the newsfeed similar to Facebook/ LinkedIn one.
+
+We wanter to have a separte backend and frontend solutions.
+
+He started working on it, but got sick and now is unavailable.
+
+Product Owner asked you if you can complete the work.
+
+## Backend
+
+We want to have basic Get, GetById, Post, Put, Patch and Delete implemented.
+
+Users should be able to create a photos using text only, photo only or text and photo. Posts is the only entity that api should support, there are no other enitites required.
+
+We need to follow all rest api guidelines as best as we can. The only expection is that we do not need to return descriptive messages.
+
+## Frontend
+
+We need to create a modern newsfeed that will show the posts. It's up to you to design best user experience. We just want something that feels modern.
+
+When user clicks on post, post should appear in the full screen.
+
+User should also have the ability to add, edit and delete the post.
+
+98% of our user base uses mobile devices.
+
+You can choose the technology that you like but this technology should not use SSR.
+
+## Bonus points
+
+### Backend
+
+- Write tests
+- Implement better architecture, decouple data access layer from api layer
+- Make sure we follow best REST guidelines
+- Use most efficent LINQ methods, including in presupplied endpoints
+- Docerize the solution + database
+- Deploy the solution to the cloud, manually or with CI/ CD pipeline
+- Add OpenApi and/ or Swagger
+- Wrtie a nice Readme file
+
+### Frontend
+
+- Write tests
+- Implement modern pagination, that would be good for newsfeed
+- Implement second layout for desktop
+- Use scss to describe classes
+- Use Typescript
+- Use pure Javascript/ Typescript with no runtime dependencies
+- If you are using any framework minize dependencies
+- Write a nice Readme file
+
+Any other ideas of your choice.
+
+---
+
 # Posts
 
 This is an app for sharing and updating posts, built using the [T3 Stack](https://create.t3.gg/).
@@ -14,7 +74,6 @@ This is an app for sharing and updating posts, built using the [T3 Stack](https:
 
 ## Where I've done things differently
 
-- The database in development mode is using SQLLite. It could easily be swapped for PostgreSQL in production using prisma config. SQLLite is a smaller database, that's easier for the dev machines to run and start up quickly
 - I've merged the front-end and back-end into a single project
 - Instead of separating layers, I have deliberately coupled the data layer, API layer, and even front-end layers to make development seamless across the layers. This means that removing or renaming a database field will propagate across the app, and show all errors correctly. No need to manually create maps between the layers, or have multiple similar models - one for each layer.
 - I have not dockerised the app in any way. Most cloud hosting options natively support NextJS, and so docker would only complicate the CI/CD process. In terms of development, prisma is running its own database within the single `yarn dev` command, alongside the NextJS server. In the cloud, I'd likely use a cloud-native database, such as Planetscale.
@@ -31,7 +90,7 @@ I'd like to:
 - Add tests (likely using [react-testing-library](https://testing-library.com))
 - Do an accessibility review. React testing library often helps with this
 - Add "last edited" / "created on" to the UI (likely using [luxon](https://moment.github.io/luxon/) for date formatting)
-- Use a better database than SQLLite (probably postgresql). This is done by [changing the schema config for prisma](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
+- Use a better database than SQLite (in production). This is done by [changing the schema config for prisma](https://www.prisma.io/docs/concepts/database-connectors/postgresql)
 - Add an undo button for deletes (likely using a state library like [Zustand](https://zustand-demo.pmnd.rs/)), or at least a confirmation dialog if it cannot be reversed (likely using [Chakra UI's alert dialog](https://chakra-ui.com/docs/components/alert-dialog/usage))
 - Add pagination (likely using infinite scroll with [TanStack Virtual](https://tanstack.com/virtual/v3/docs/examples/react/infinite-scroll) for performance)
 
